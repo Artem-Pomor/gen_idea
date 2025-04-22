@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "lint-fix": "next lint --fix",
+    "eslint": "eslint --ignore-pattern .gitignore",
+    "eslint-fix": "eslint --fix --ignore-pattern .gitignore",
     "stylelint": "stylelint \"**/*.{css,scss}\" --ignore-path .gitignore",
     "stylelint-fix": "stylelint \"**/*.{css,scss}\" --fix --ignore-path .gitignore",
     "typeslint": "tsc --noEmit",
