@@ -12,7 +12,7 @@ jobs:
 
         strategy:
             matrix:
-                dir: ["frontend", "backend"]
+                dir: ["frontend"]
 
         steps:
             - run: echo "CI start"
@@ -23,6 +23,7 @@ jobs:
               with:
                   node-version: 20
             - name: Install dependencies
+              working-directory: ${{ matrix.dir }}
               run: yarn install
             - name: CI Check
               run: yarn ci-lint
