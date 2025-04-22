@@ -26,4 +26,5 @@ jobs:
               working-directory: ${{ matrix.dir }}
               run: yarn install
             - name: CI Check
+              working-directory: ${{ matrix.dir }}
               run: yarn ci-lint
