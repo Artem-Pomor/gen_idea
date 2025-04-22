@@ -1,6 +1,5 @@
 import antfu from '@antfu/eslint-config';
 import nextPlugin from '@next/eslint-plugin-next';
-import tailwind from 'eslint-plugin-tailwindcss';
 
 export default antfu(
     {
@@ -20,7 +19,6 @@ export default antfu(
 
       ignores: ['migrations/**/*', 'next-env.d.ts'],
     },
-    ...tailwind.configs['flat/recommended'],
     {
       plugins: {
         '@next/next': nextPlugin,
@@ -37,6 +35,8 @@ export default antfu(
         'ts/consistent-type-definitions': ['error', 'type'], // Use `type` instead of `interface`
         'react/prefer-destructuring-assignment': 'off', // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
         'node/prefer-global/process': 'off', // Allow using `process.env`
+        'test/padding-around-all': 'error', // Add padding in test files
+        'test/prefer-lowercase-title': 'off', // Allow using uppercase titles in test titles
       },
     },
 );
