@@ -9,6 +9,11 @@ on:
 jobs:
     lint:
         runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                dir: ["frontend", "backend"]
+
         steps:
             - run: echo "CI start"
             - name: Checkout code
