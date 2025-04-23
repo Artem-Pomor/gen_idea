@@ -1,0 +1,41 @@
+name: Project CI
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+
+env:
+    NODE_VERSION: 20
+    WORKDIR: frontend
+
+jobs:
+    Setup_Project:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v3
+            -   uses: ./.github/actions/setup
+                with:
+                    node-version: ${{ env.NODE_VERSION }}
+                    dir: ${{ env.WORKDIR }}
+
+    Check_Lint:
+        runs-on: ubuntu-latest
+        needs: Setup_Project
+        steps:
+            -   uses: actions/checkout@v3
+            -   uses: ./.github/actions/lint
+                with:
+                    node-version: ${{ env.NODE_VERSION }}
+                    dir: ${{ env.WORKDIR }}
+
+    Build_Project:
+        runs-on: ubuntu-latest
+        needs: [Setup_Project, Check_Lint]
+        steps:
+            -   uses: actions/checkout@v3
+            -   uses: ./.github/actions/build
+                with:
+                    node-version: ${{ env.NODE_VERSION }}
+                    dir: ${{ env.WORKDIR }}
