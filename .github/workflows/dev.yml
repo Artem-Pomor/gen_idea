@@ -15,7 +15,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v3
-            -   uses: /.github/actions/setup
+            -   uses: ./.github/actions/setup
                 with:
                     node-version: ${{ env.NODE_VERSION }}
                     dir: ${{ env.WORKDIR }}
@@ -25,7 +25,7 @@ jobs:
         needs: Setup Project
         steps:
             -   uses: actions/checkout@v3
-            -   uses: /.github/actions/lint
+            -   uses: ./.github/actions/lint
                 with:
                     node-version: ${{ env.NODE_VERSION }}
                     dir: ${{ env.WORKDIR }}
@@ -35,7 +35,7 @@ jobs:
         needs: [Setup Project, Check Lint]
         steps:
             -   uses: actions/checkout@v3
-            -   uses: /.github/actions/build
+            -   uses: ./.github/actions/build
                 with:
                     node-version: ${{ env.NODE_VERSION }}
                     dir: ${{ env.WORKDIR }}
