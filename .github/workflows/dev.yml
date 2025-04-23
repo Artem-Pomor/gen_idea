@@ -11,7 +11,7 @@ env:
     WORKDIR: frontend
 
 jobs:
-    Setup Project:
+    Setup_Project:
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v3
@@ -20,9 +20,9 @@ jobs:
                     node-version: ${{ env.NODE_VERSION }}
                     dir: ${{ env.WORKDIR }}
 
-    Check Lint:
+    Check_Lint:
         runs-on: ubuntu-latest
-        needs: Setup Project
+        needs: Setup_Project
         steps:
             -   uses: actions/checkout@v3
             -   uses: ./.github/actions/lint
@@ -30,9 +30,9 @@ jobs:
                     node-version: ${{ env.NODE_VERSION }}
                     dir: ${{ env.WORKDIR }}
 
-    Build Project:
+    Build_Project:
         runs-on: ubuntu-latest
-        needs: [Setup Project, Check Lint]
+        needs: [Setup_Project, Check_Lint]
         steps:
             -   uses: actions/checkout@v3
             -   uses: ./.github/actions/build
