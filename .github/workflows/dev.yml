@@ -1,22 +1,41 @@
-name: Lint
+name: Dev
 
 on:
-    pull_request:
+    push:
+        branches: ["master"]
+    pull-request:
         branches: ["master"]
 
+env:
+    NODE_VERSION: 20
+    WORKDIR: frontend
+
 jobs:
-    setup:
-        uses: ./.github/workflows/setup.yml
+    Install Dependencies:
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v3
+            -   uses: ./.github/actions/setup
+                with:
+                    node-version: ${{ env.NODE_VERSION }}
+                    dir: ${{ env.WORKDIR }}
 
     Check Lint:
         runs-on: ubuntu-latest
-        needs: setup
+        needs: Install Dependencies
         steps:
-            - uses: actions/checkout@v3
-              name: Setup Node
-            - uses: actions/setup-node@v3
-              with:
-                  node-version: "16"
-                  cache: "yarn"
-            - run: yarn install --frozen-lockfile
-            - run: yarn lint
+            -   uses: actions/checkout@v3
+            -   uses: ./.github/actions/lint
+                with:
+                    node-version: ${{ env.NODE_VERSION }}
+                    dir: ${{ env.WORKDIR }}
+
+    Build Project:
+        runs-on: ubuntu-latest
+        needs: Check Lint
+        steps:
+            -   uses: actions/checkout@v3
+            -   uses: ./.github/actions/build
+                with:
+                    node-version: ${{ env.NODE_VERSION }}
+                    dir: ${{ env.WORKDIR }}
