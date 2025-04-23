@@ -1,0 +1,23 @@
+name: Run Lint
+
+inputs:
+    node-version:
+        required: true
+        default: '20'
+
+runs:
+    using: 'composite'
+    steps:
+        -   uses: actions/setup-node@v3
+            with:
+                node-version: ${{ inputs.node-version }}
+
+        -   uses: actions/cache@v3
+            with:
+                path: | 
+                    ~/.yarn
+                    ${{ inputs.dir }}/node_modules
+                key: yarn-${{ hashFiles('**/yarn.lock') }}
+                restore-keys: yarn-
+        -   run: yarn ci-lint
+            working-directory: ${{ inputs.dir }}
