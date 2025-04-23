@@ -2,10 +2,10 @@ name: Setup Dependencies
 
 inputs:
     node-version:
-        required: true,
+        required: true
         default: '20'
     dir:
-        required: true,
+        required: true
         default: 'frontend'
 
 runs:
@@ -22,5 +22,7 @@ runs:
                     ${{ inputs.dir }}/node_modules
                 key: yarn-${{ hashFiles('**/yarn.lock') }}
                 restore-keys: yarn-
+
         -   run: yarn install
+            shell: bash
             working-directory: ${{ inputs.dir }}

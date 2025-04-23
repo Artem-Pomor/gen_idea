@@ -9,17 +9,20 @@ inputs:
         default: 'frontend'
 
 runs:
-    using: 'composite'
+    using: "composite"
     steps:
-        -   uses: actions/setup-node@v3
-            with:
-                node-version: ${{ inputs.node-version }}
-        -   uses: actions/cache@v3
-            with:
-                path: |
-                    ~/.yarn
-                    ${{ inputs.dir }}/node_modules
-                key: yarn-${{ hashFiles('**/yarn.lock') }}
-                restore-keys: yarn-
-        -   run: yarn build
-            working-directory: ${{ inputs.dir }}
+        - uses: actions/setup-node@v3
+          with:
+              node-version: ${{ inputs.node-version }}
+
+        - uses: actions/cache@v3
+          with:
+              path: |
+                  ~/.yarn
+                  ${{ inputs.dir }}/node_modules
+              key: yarn-${{ hashFiles('**/yarn.lock') }}
+              restore-keys: yarn-
+
+        - run: yarn build
+          shell: bash
+          working-directory: ${{ inputs.dir }}
