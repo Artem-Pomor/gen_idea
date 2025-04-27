@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Toaster } from '@/shared/ui/sonner';
 import { Poppins } from 'next/font/google';
 import { ThemeProvider } from './theme';
 import './globals.css';
@@ -32,6 +33,7 @@ export default function RootLayout(
                         disableTransitionOnChange
                     >
                         {children}
+                        <Toaster />
                     </ThemeProvider>
                 </body>
             </html>

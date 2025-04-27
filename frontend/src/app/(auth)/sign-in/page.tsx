@@ -1,6 +1,6 @@
-import { SignInPage } from '../../../features/sign-in';
+import { SignInForm } from '@/widgets/sign-in';
 
 
 export default function SignIn() {
-    return <SignInPage />;
+    return <SignInForm />;
 }

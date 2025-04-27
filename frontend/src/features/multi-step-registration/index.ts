@@ -1,0 +1,1 @@
+export { MultiStepRegistration } from './MultiStepRegistration';
