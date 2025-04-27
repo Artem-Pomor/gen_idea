@@ -1,9 +1,10 @@
 'use client';
 
 import { Button } from '@/shared/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/shared/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 
 
@@ -51,6 +52,14 @@ export function SignUpForm() {
                     </form>
                 </Form>
             </CardContent>
+            <CardFooter>
+                <CardDescription className="flex flex-1 flex-row items-center justify-end">
+                    Don't have an account?
+                    <Button className="p-1" variant="link">
+                        <Link href="/sign-in">Sign In</Link>
+                    </Button>
+                </CardDescription>
+            </CardFooter>
         </Card>
 
     );

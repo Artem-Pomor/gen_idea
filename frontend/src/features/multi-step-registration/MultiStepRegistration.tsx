@@ -56,9 +56,9 @@ export function MultiStepRegistration() {
                     getStepForm()
                 }
 
-                <div className="flex pt-4 justify-between">
-                    <Button disabled={step === 0} onClick={handleBack} variant="outline">Back</Button>
-                    <Button type="submit">{ submitText() }</Button>
+                <div className="flex gap-4 pt-4 justify-between">
+                    <Button className="flex flex-1" disabled={step === 0} onClick={handleBack} variant="outline">Back</Button>
+                    <Button className="flex flex-1" type="submit">{ submitText() }</Button>
                 </div>
             </form>
         </Form>
