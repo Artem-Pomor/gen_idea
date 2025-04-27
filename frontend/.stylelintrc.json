@@ -13,6 +13,7 @@
           "apply",
           "layer",
           "theme",
+          "custom-variant",
           "responsive",
           "screen",
           "tailwind",
@@ -30,10 +31,12 @@
           "responsive",
           "screen",
           "tailwind",
-          "variants"
+          "variants",
+          "custom-variant"
         ]
       }
     ],
+    "scss/operator-no-unspaced": null,
     "no-descending-specificity": null
   }
 }
