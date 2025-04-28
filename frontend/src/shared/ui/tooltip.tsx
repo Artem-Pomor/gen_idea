@@ -6,14 +6,13 @@ import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import * as React from 'react';
 
 
-const TooltipComponent = TooltipPrimitive as unknown as React.ElementType;
-
 function TooltipProvider({
     delayDuration = 0,
     ...props
 }: React.ComponentProps<typeof TooltipPrimitive.Provider>) {
     return (
-        <TooltipComponent
+        // @ts-expect-error TODO: fix it
+        <TooltipPrimitive
             data-slot="tooltip-provider"
             delayDuration={delayDuration}
             {...props}
