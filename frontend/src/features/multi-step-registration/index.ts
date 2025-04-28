@@ -1,1 +1,1 @@
-export { MultiStepRegistration } from './MultiStepRegistration';
+export { MultiStepRegistration } from './multi-step-registration';
