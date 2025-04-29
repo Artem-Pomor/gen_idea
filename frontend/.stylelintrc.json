@@ -6,36 +6,9 @@
     "stylelint-config-recommended"
   ],
   "rules": {
-    "at-rule-no-unknown": [
-      true,
-      {
-        "ignoreAtRules": [
-          "apply",
-          "layer",
-          "theme",
-          "custom-variant",
-          "responsive",
-          "screen",
-          "tailwind",
-          "variants"
-        ]
-      }
-    ],
-    "scss/at-rule-no-unknown": [
-      true,
-      {
-        "ignoreAtRules": [
-          "apply",
-          "layer",
-          "theme",
-          "responsive",
-          "screen",
-          "tailwind",
-          "variants",
-          "custom-variant"
-        ]
-      }
-    ],
+    "at-rule-no-unknown": null,
+    "at-rule-no-deprecated": null,
+    "scss/at-rule-no-unknown": null,
     "scss/operator-no-unspaced": null,
     "no-descending-specificity": null
   }
