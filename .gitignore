@@ -48,10 +48,10 @@ frontend/out
 frontend/build
 frontend/dist
 frontend/node_modules
+frontend/next-env.d.ts
 
 # ───── Backend build (Nest.js, etc.) ─────
 backend/dist
-backend/build
 backend/node_modules
 
 # ───── Test / Reports ─────
