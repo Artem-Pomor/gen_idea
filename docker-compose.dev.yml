@@ -1,0 +1,52 @@
+services:
+    frontend:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile.frontend
+            target: builder
+        volumes:
+            - ./frontend:/app
+            - /app/node_modules
+        ports:
+            - "3000:3000"
+        environment:
+            NODE_ENV: development
+        command: yarn dev
+
+    backend:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile.backend
+        volumes:
+            - ./backend:/app
+            - /app/node_modules
+        environment:
+            - NODE_ENV=development
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=dreamscape
+        depends_on:
+            db:
+                condition: service_healthy
+        ports:
+            - "3001:3001"
+
+    db:
+        image: postgres:14
+        restart: always
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: dreamscape
+        healthcheck:
+            test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+            interval: 5s
+            timeout: 3s
+            retries: 5
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+
+volumes:
+    pgdata:
