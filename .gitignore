@@ -1,1 +1,60 @@
-.idea
+# ───── Node.js ─────
+node_modules
+dist/
+build/
+.temp/
+.tmp/
+.cache/
+.nyc_output/
+coverage/
+.pnpm-store/
+
+# ───── Logs ─────
+logs/
+*.log
+yarn-debug.log*
+npm-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ───── Runtime files ─────
+*.pid
+*.seed
+*.pid.lock
+
+# ───── dotenv files ─────
+.env
+.env.*
+!.env.example
+
+# ───── OS ─────
+.DS_Store
+Thumbs.db
+
+# ───── IDEs ─────
+.idea/
+.vscode/
+*.sublime-workspace
+.project
+.classpath
+.settings/
+*.launch
+.c9/
+
+# ───── Frontend build (Next.js, Vite, etc.) ─────
+frontend/.next
+frontend/.nuxt
+frontend/out
+frontend/build
+frontend/dist
+frontend/node_modules
+
+# ───── Backend build (Nest.js, etc.) ─────
+backend/dist
+backend/build
+backend/node_modules
+
+# ───── Test / Reports ─────
+coverage/
+*.lcov
+report.[0-9]*.json

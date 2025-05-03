@@ -1,0 +1,33 @@
+# ---------- Base Stage ----------
+FROM node:22-alpine AS base
+WORKDIR /app
+
+COPY ./frontend/package.json ./package.json
+COPY ./frontend/yarn.lock ./yarn.lock
+
+# ---------- Development Stage ----------
+FROM base AS dev
+RUN yarn install
+COPY ./frontend .
+EXPOSE 3000
+CMD ["yarn", "dev"]
+
+# ---------- Build Stage ----------
+FROM base AS builder
+RUN yarn install
+COPY ./frontend .
+RUN yarn build
+
+# ---------- Production Stage ----------
+FROM node:22-alpine AS prod
+WORKDIR /app
+ENV NODE_ENV=production
+
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/yarn.lock ./yarn.lock
+
+RUN yarn install --production --frozen-lockfile
+
+EXPOSE 3000
+CMD ["yarn", "start"]
